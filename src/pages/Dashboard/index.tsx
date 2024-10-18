@@ -1,4 +1,4 @@
-import Collumns from "./components/Columns";
+import { Collumns } from "./components/Columns";
 import * as S from "./styles";
 import { SearchBar } from "./components/Searchbar";
 
