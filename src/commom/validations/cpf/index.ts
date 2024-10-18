@@ -1,24 +1,21 @@
-export function validateCpf(cpf: string): boolean {
-	const cleanCpf = cpf.replace(/\D/g, "");
+export function validateCPF(cpf: string) {
+	console.log('1 ', cpf);
+	cpf = cpf.replace(/[^\d]+/g, ''); // Remove caracteres não numéricos
+	console.log('2 ', cpf);
 
-	if (cleanCpf.length !== 11 || /^(\d)\1+$/.test(cleanCpf)) {
-		return false;
-	}
-
-	const calculateDigit = (slice: number): number => {
-		let sum = 0;
-		for (let i = 0; i < slice; i++) {
-			sum += parseInt(cleanCpf.charAt(i)) * (slice + 1 - i);
+	if (cpf.length !== 11) return false;
+	if (/^(\d)\1{10}$/.test(cpf)) return false;
+	const calcularDigito = (cpf: string, fator: number) => {
+		let soma = 0;
+		for (let i = 0; i < fator - 1; i++) {
+			soma += parseInt(cpf[i]) * (fator - i);
 		}
-		const remainder = (sum * 10) % 11;
-		return remainder === 10 ? 0 : remainder;
+		const resto = (soma * 10) % 11;
+		return resto === 10 || resto === 11 ? 0 : resto;
 	};
 
-	const digit1 = calculateDigit(9);
-	const digit2 = calculateDigit(10);
+	const digito1 = calcularDigito(cpf, 10);
+	const digito2 = calcularDigito(cpf, 11);
 
-	return (
-		digit1 === parseInt(cleanCpf.charAt(9)) &&
-		digit2 === parseInt(cleanCpf.charAt(10))
-	);
+	return digito1 === parseInt(cpf[9]) && digito2 === parseInt(cpf[10]);
 }

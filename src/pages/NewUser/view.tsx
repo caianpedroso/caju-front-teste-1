@@ -1,24 +1,20 @@
-import * as S from "./styles";
-import Button from "~/components/Buttons";
 import { HiOutlineArrowLeft } from "react-icons/hi";
-import { IconButton } from "~/components/Buttons/IconButton";
-import { useHistory } from "react-router-dom";
-import routes from "~/router/routes";
-import { TextField } from "~/components";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+
+import * as S from "./styles";
 import { maskCpf } from "~/commom/masks";
-import { useNewUser } from "./viewModel.ts";
+
+import { IconButton } from "~/components/Buttons/IconButton";
+import Button from "~/components/Buttons";
+import { TextField } from "~/components";
+
+import { useNewUser } from "~/pages";
 import { validation } from "~/pages/NewUser/validation.ts";
 import { ResendFormData } from "~/pages/NewUser/model.ts";
 
-const NewUserPage = () => {
-	const { onSubmit } = useNewUser();
-  const history = useHistory();
-	
-  const goToHome = () => {
-    history.push(routes.dashboard);
-  };
+export const NewUserPage = () => {
+	const { onSubmit, goToHome } = useNewUser();
 
 	const {
 		register,
@@ -40,6 +36,7 @@ const NewUserPage = () => {
 		        id="name"
 		        placeholder="Nome"
 		        label="Nome"
+		        type="text"
 		        error={errors.name?.message}
 		        disabled={isSubmitting}
 		        {...register("name")}
@@ -58,9 +55,10 @@ const NewUserPage = () => {
 		        placeholder="CPF"
 		        label="CPF"
 		        type="text"
-		        {...register("document")}
+		        {...register("document", {
+			        onChange: maskCpf
+		        })}
 		        error={errors.document?.message}
-		        onChange={maskCpf}
 		        maxLength={14}
 		        disabled={isSubmitting}
 	        />
@@ -73,11 +71,9 @@ const NewUserPage = () => {
 		        max="9999-12-31"
 		        disabled={isSubmitting}
 	        />
-	        <Button isLoading={isSubmitting} type="submit">Cadastrar</Button>
+	        <Button type="submit">Cadastrar</Button>
 	      </S.Form>
       </S.Card>
     </S.Container>
   );
 };
-
-export default NewUserPage;
