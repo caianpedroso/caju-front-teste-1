@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { validateCPF, validateData } from "~/commom/validations";
+import { validateCPF, validateData } from "~/common/validations";
 
 export const validation = z.object({
 	name: z

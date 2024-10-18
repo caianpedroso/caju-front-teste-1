@@ -2,7 +2,7 @@ import * as React from "react";
 import { ResendFormData } from "~/pages/NewUser/model.ts";
 import routes from "~/router/routes.ts";
 import { useHistory } from "react-router-dom";
-import { apiBase } from "~/services/base-api.ts";
+import { apiBase } from "~/api/axios.ts";
 
 export function useNewUser() {
 	const history = useHistory();

@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import * as S from "./styles";
-import { maskCpf } from "~/commom/masks";
+import { maskCpf } from "~/common/masks";
 
 import { IconButton } from "~/components/Buttons/IconButton";
 import Button from "~/components/Buttons";
