@@ -2,7 +2,7 @@ import { Collumns } from "./components/Columns";
 import * as S from "./styles";
 import { SearchBar } from "./components/Searchbar";
 
-const DashboardPage = () => {
+export const DashboardPage = () => {
   return (
     <S.Container>
       <SearchBar />
@@ -10,4 +10,3 @@ const DashboardPage = () => {
     </S.Container>
   );
 };
-export default DashboardPage;

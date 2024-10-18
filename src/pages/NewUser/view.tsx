@@ -69,6 +69,7 @@ export const NewUserPage = () => {
 		        {...register("date")}
 		        placeholder="DD/MM/YYYY"
 		        max="9999-12-31"
+		        min="1900-01-01"
 		        disabled={isSubmitting}
 	        />
 	        <Button type="submit">Cadastrar</Button>
