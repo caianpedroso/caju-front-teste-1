@@ -15,3 +15,8 @@ export const maskCpf = (e: React.ChangeEvent<HTMLInputElement>) => {
 	// Atualiza o valor no próprio input
 	e.target.value = value;
 };
+
+
+export function unmaskCpf(value: string): string {
+	return value.replace(/\D/g, "");
+}

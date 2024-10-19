@@ -6,12 +6,21 @@ import {
   HiOutlineCalendar,
   HiOutlineTrash,
 } from "react-icons/hi";
+import { useUpdateRegistration } from "~/pages/Dashboard/components/RegistrationCard/viewModel.ts";
 
 type Props = {
   data: any;
 };
 
 const RegistrationCard = (props: Props) => {
+	const {
+		handleReprove,
+		handleApprove,
+		handleReview,
+		loading,
+		error
+	} = useUpdateRegistration(props.data.id)
+
   return (
     <S.Card>
       <S.IconAndText>
@@ -27,8 +36,8 @@ const RegistrationCard = (props: Props) => {
         <span>{props.data.admissionDate}</span>
       </S.IconAndText>
       <S.Actions>
-        <ButtonSmall bgcolor="rgb(255, 145, 154)" >Reprovar</ButtonSmall>
-        <ButtonSmall bgcolor="rgb(155, 229, 155)">Aprovar</ButtonSmall>
+        <ButtonSmall bgcolor="rgb(255, 145, 154)" onClick={handleReprove}>Reprovar</ButtonSmall>
+        <ButtonSmall bgcolor="rgb(155, 229, 155)" onClick={handleApprove}>Aprovar</ButtonSmall>
         <ButtonSmall bgcolor="#ff8858">Revisar novamente</ButtonSmall>
 
         <HiOutlineTrash />

@@ -10,5 +10,5 @@ export interface Registration {
 	employeeName: string;
 	status: RegistrationStatus;
 	cpf: string;
-	id: string;
+	id?: string;
 }

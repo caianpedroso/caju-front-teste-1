@@ -34,8 +34,6 @@ export const Columns = (props: Props) => {
 		REVIEW: []
 	}), [props])
 
-	console.log({data})
-
 	return (
 		<S.Container>
 			{ALL_COLUMNS.map((column) => {
@@ -47,7 +45,7 @@ export const Columns = (props: Props) => {
 								{column.title}
 							</S.TitleColumn>
 							<S.CollumContent>
-								{registrationByStatus.map((registration) => {
+								{registrationByStatus.map((registration: Registration) => {
 									return (
 										<RegistrationCard
 											data={registration}
