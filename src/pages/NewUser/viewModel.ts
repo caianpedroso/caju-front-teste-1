@@ -7,6 +7,7 @@ import {Registration, RegistrationStatus} from "~/common/interfaces/registration
 import {useMutation} from "react-query";
 import {queryClient} from "~/api/query-client.ts";
 import {unmaskCpf} from "~/common/masks";
+import toast from "react-hot-toast";
 
 
 export const addNewUser = async (payload: Registration) => {
@@ -22,10 +23,14 @@ export function useNewUser()  {
 	const addNewUserMutation = useMutation({
 		mutationFn: addNewUser,
 		onSuccess: () => {
+			toast.success("Novo candidato cadastrado!");
 			queryClient.invalidateQueries({
 				queryKey: ["registrations"],
 			})
 			goToHome()
+		},
+		onError: () => {
+			toast.error("Houve um erro ao tentar cadastrar um novo candidato!");
 		}
 	})
 
