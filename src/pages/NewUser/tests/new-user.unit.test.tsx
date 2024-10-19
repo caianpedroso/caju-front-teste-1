@@ -17,7 +17,7 @@ jest.mock('~/common/masks', () => ({
     maskCpf: jest.fn((value) => value),
 }));
 
-describe('NewUserPage', () => {
+describe('NewUserPage Unit Tests', () => {
     const mockOnSubmit = jest.fn();
     const mockGoToHome = jest.fn();
 

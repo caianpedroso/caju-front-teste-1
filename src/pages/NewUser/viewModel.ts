@@ -23,14 +23,17 @@ export function useNewUser()  {
 	const addNewUserMutation = useMutation({
 		mutationFn: addNewUser,
 		onSuccess: () => {
-			toast.success("Novo candidato cadastrado!");
+			toast.success("Novo candidato cadastrado!", {
+				duration: 5000,
+				id: "new-user-success"
+			});
 			queryClient.invalidateQueries({
 				queryKey: ["registrations"],
 			})
 			goToHome()
 		},
 		onError: () => {
-			toast.error("Houve um erro ao tentar cadastrar um novo candidato!");
+			toast.error("Houve um erro ao tentar cadastrar um novo candidato!", { id: "new-user-error" });
 		}
 	})
 

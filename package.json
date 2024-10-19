@@ -8,6 +8,8 @@
     "init:db": "json-server --watch data/db.json",
     "build": "tsc && vite build",
     "test:dev": "jest --watch --verbose --no-cache",
+    "test:unit": "jest --testMatch='**/*.unit.test.{ts,tsx}'",
+    "test:integration": "jest --testMatch='**/*.integration.test.{ts,tsx}'",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
@@ -15,7 +17,7 @@
     "@hookform/resolvers": "^3.9.0",
     "@testing-library/react-hooks": "^8.0.1",
     "axios": "^1.7.2",
-    "json-server": "^1.0.0-beta.1",
+    "json-server": "^1.0.0-beta.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.53.0",
