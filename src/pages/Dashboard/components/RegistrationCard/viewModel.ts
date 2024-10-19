@@ -1,8 +1,7 @@
 import {apiBase} from "~/api/axios.ts";
-import {Registration, RegistrationStatus} from "~/common/interfaces/registration.ts";
+import { RegistrationStatus} from "~/common/interfaces/registration.ts";
 import {useMutation} from "react-query";
 import {queryClient} from "~/api/query-client.ts";
-import {RegistrationPayload} from "~/pages/Dashboard/components/RegistrationCard/models.ts";
 import toast from "react-hot-toast";
 
 
