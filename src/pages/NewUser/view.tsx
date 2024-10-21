@@ -4,8 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import * as S from "./styles";
 import { maskCpf } from "~/common/masks";
-
-import {ButtonDefault, TextField, ModalProvider} from "~/components";
+import { ButtonDefault, TextField, Modal } from "~/components";
 
 import { useNewUser } from "~/pages";
 import { validation } from "~/pages/NewUser/validation.ts";
@@ -86,7 +85,7 @@ export const NewUserPage = () => {
 		        />
 		      </S.ButtonSubmitContainer>
 	      </S.Form>
-	      <ModalProvider />
+	      <Modal />
       </S.Card>
     </S.Container>
   );

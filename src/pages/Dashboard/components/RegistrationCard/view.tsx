@@ -6,7 +6,7 @@ import {
 	HiOutlineTrash,
 } from "react-icons/hi";
 import { useDeleteRegistration, useUpdateRegistration } from "~/pages/Dashboard/components/RegistrationCard/viewModel.ts";
-import { ButtonDefault, ModalProvider} from "~/components";
+import { ButtonDefault, Modal } from "~/components";
 import { Props } from "~/pages/Dashboard/components/RegistrationCard/models.ts";
 
 export const RegistrationCard = (props: Props) => {
@@ -64,7 +64,7 @@ export const RegistrationCard = (props: Props) => {
 					/>
 				)}
 				<HiOutlineTrash onClick={deleteRegistration}/>
-				<ModalProvider />
+				<Modal />
 			</S.Actions>
 		</S.Card>
 	);

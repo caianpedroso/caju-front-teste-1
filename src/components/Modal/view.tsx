@@ -1,43 +1,9 @@
 import React from 'react';
 import * as S from "./styles";
-import { ModalProps } from "~/components/Modal/models.ts";
 import { ButtonDefault } from "~/components";
-import {useGlobalModal, useModalState} from "~/components/Modal/viewModel.ts";
+import { useGlobalModal, useModalState } from "~/components/Modal/viewModel.ts";
 
-export const Modal: React.FC<ModalProps> = ({
-	isOpen,
-	onClose,
-	onConfirm,
-	title = 'Confirmar Ação',
-	message = 'Tem certeza que deseja continuar?',
-	cancelText = 'Cancelar',
-	confirmText = 'Confirmar',
-}) => {
-	if (!isOpen) return null;
-
-	return (
-		<S.Overlay>
-			<S.ModalContainer>
-				<h2>{title}</h2>
-				<p>{message}</p>
-				<S.ButtonContainer>
-					<ButtonDefault
-						label={cancelText}
-						variant='danger'
-						onClick={onClose}
-					/>
-					<ButtonDefault
-						label={confirmText}
-						variant='success'
-						onClick={onConfirm}
-					/>
-				</S.ButtonContainer>
-			</S.ModalContainer>
-		</S.Overlay>
-	);
-};
-
-export const ModalProvider: React.FC = () => {
+export const Modal: React.FC = () => {
 	const { isOpen, config } = useModalState();
 	const { closeModal } = useGlobalModal();
 
