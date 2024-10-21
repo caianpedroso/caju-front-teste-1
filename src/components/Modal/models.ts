@@ -7,4 +7,4 @@ export type ModalConfig = {
 export type ModalState = {
 	isOpen: boolean;
 	config: ModalConfig | null;
-};
+}; 

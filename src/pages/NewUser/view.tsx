@@ -16,7 +16,7 @@ export const NewUserPage = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting, isValid },
+    formState: { errors, isSubmitting },
   } = useForm<ResendFormData>({
     resolver: zodResolver(validation),
     mode: 'onBlur',

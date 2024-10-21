@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { theme } from './common/styles/theme';
 
-const AllTheProviders: React.FC = ({ children }) => {
+const AllTheProviders = ({ children }: { children: React.ReactNode }) => {
   const queryClient = new QueryClient();
   return (
     <QueryClientProvider client={queryClient}>

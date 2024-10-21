@@ -16,7 +16,7 @@ const getButtonStyles = (variant: ButtonVariant, theme: any) => {
       &:hover {
         background-color: ${theme.colors.secondaryHover};
       }
-    `,
+    `, 
 		success: css`
       color: ${theme.colors.black};
       background-color: ${theme.colors.success};

@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "react-query";
-import { ModalState, ModalConfig } from "~/components";
+import { ModalState, ModalConfig } from "~/components/Modal/models";
 const MODAL_STATE_KEY = 'globalModal';
 
 export const useGlobalModal = () => {
@@ -25,7 +25,7 @@ export const useGlobalModal = () => {
 		openModal: openModal.mutate,
 		closeModal: closeModal.mutate,
 	};
-};
+}; 
 
 export const useModalState = () => {
 	const queryClient = useQueryClient();

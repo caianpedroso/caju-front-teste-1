@@ -10,4 +10,4 @@ export const ALL_COLUMNS = [
 	{ status: RegistrationStatus.REVIEW, title: "Pronto para revisar" },
 	{ status: RegistrationStatus.APPROVED, title: "Aprovado" },
 	{ status: RegistrationStatus.REPROVED, title: "Reprovado" },
-];
+]; 

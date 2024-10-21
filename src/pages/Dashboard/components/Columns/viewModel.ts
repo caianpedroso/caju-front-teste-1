@@ -18,17 +18,24 @@ function normalizeStatusWord(status: string) {
 }
 
 export const useColumns = (props: Props) => {
-	const data = useMemo(() => props?.registrations?.reduce((acc, registration: Registration) => {
-		const status = normalizeStatusWord(registration.status)
-		const group = acc[status]
-		group.push(registration)
-		acc[status] = group
-		return acc
-	}, {
+
+	const groupStatus: {
+		APPROVED: Registration[];
+		REPROVED: Registration[];
+		REVIEW: Registration[];
+	} = {
 		APPROVED: [],
 		REPROVED: [],
 		REVIEW: []
-	}), [props])
+	}
+
+	const data = useMemo(() => props?.registrations?.reduce((acc, registration: Registration) => {
+		const status = normalizeStatusWord(registration.status)
+		const group: Registration[] = acc[status]
+		group.push(registration)
+		acc[status] = group
+		return  acc 
+	}, groupStatus), [props])
 
 
 	return {

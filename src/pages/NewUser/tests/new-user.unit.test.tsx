@@ -1,4 +1,3 @@
-import React from 'react';
 import { screen, fireEvent } from '@testing-library/dom';
 import { act, waitFor } from '@testing-library/react';
 import { NewUserPage } from '../view';
