@@ -62,5 +62,7 @@ export function useNewUser()  {
 		goToHome,
 		loading: addNewUserMutation.isLoading,
 		error: addNewUserMutation.isError,
+		success: addNewUserMutation.isSuccess,
+		mutation: addNewUserMutation,
 	};
 }

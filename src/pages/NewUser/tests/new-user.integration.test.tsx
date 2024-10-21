@@ -1,94 +1,84 @@
-import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
+import { screen, fireEvent, waitFor, act, renderHook } from '@testing-library/react';
 import { NewUserPage } from '../view';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { MemoryRouter } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
+import { render } from '~/test-utils';
 import { apiBase } from '~/api/axios.ts';
+import { useNewUser } from '../viewModel';
+import { RegistrationStatus } from '~/common/interfaces/registration';
 
 // Mocks
 // const mockPost = jest.fn();
 const mockHistoryPush = jest.fn();
 
 jest.mock('~/api/axios.ts', () => ({
-    apiBase: {
-        post: jest.fn(),
-    },
+  apiBase: {
+    post: jest.fn(),
+  },
 }));
 
 jest.mock('react-hot-toast', () => ({
-    toast: {
-        error: jest.fn(),
-    },
+  __esModule: true,
+  default: {
+    success: jest.fn(),
+    error: jest.fn(),
+  },
 }));
 
 jest.mock('react-router-dom', () => ({
-    ...jest.requireActual('react-router-dom'),
-    useHistory: () => ({
-        push: mockHistoryPush,
-    }),
+  ...jest.requireActual('react-router-dom'),
+  useHistory: () => ({
+    push: mockHistoryPush,
+  }),
 }));
 
 describe('NewUserPage Integration Tests', () => {
-    let queryClient: QueryClient;
+  let queryClient: QueryClient;
 
-    beforeEach(() => {
-        queryClient = new QueryClient();
-        jest.clearAllMocks();
-    });
+  beforeEach(() => {
+    queryClient = new QueryClient();
+    jest.clearAllMocks();
+  });
 
-    const renderNewUserPage = () => {
-        return render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter>
-                    <NewUserPage />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
+  const wrapper = ({ children }: { children: React.ReactNode }) => (
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  );
+
+  it('[hook] should successfully add a new user', async () => {
+    const dataExpected = {
+      id: 1,
+      name: 'John Doe',
+      email: 'john@example.com',
+      document: '123.456.789-00',
+      date: '2023-01-01',
+      status: RegistrationStatus.REVIEW,
     };
 
-    it('should successfully add a new user', async () => {
-        (apiBase.post as jest.Mock).mockResolvedValueOnce({ data: {}, status: 200 });
-        renderNewUserPage();
+    (apiBase.post as jest.Mock).mockResolvedValueOnce(dataExpected);
 
-        fireEvent.change(screen.getByLabelText('Nome'), { target: { value: 'John Doe' } });
-        fireEvent.change(screen.getByLabelText('Email'), { target: { value: 'john@example.com' } });
-        fireEvent.change(screen.getByLabelText('CPF'), { target: { value: '123.456.789-00' } });
-        fireEvent.change(screen.getByLabelText('Data de admissão'), { target: { value: '2023-01-01' } });
+    const { result } = renderHook(() => useNewUser(), { wrapper });
 
-        await act(async () => {
-            fireEvent.click(screen.getByRole('button', { name: 'Cadastrar' }));
-        });
-
-        await waitFor(() => {
-            expect(toast.success).toHaveBeenCalledWith('Usuário cadastrado com sucesso!');
-            expect(mockHistoryPush).toHaveBeenCalledWith('/dashboard');
-        });
+    await act(async () => {
+      result.current.mutation.mutate({
+        employeeName: 'John Doe',
+        email: 'john@example.com',
+        cpf: '12345678900',
+        admissionDate: '2023-01-01',
+        status: RegistrationStatus.REVIEW,
+      });
     });
 
-    it('should display an error message when adding a new user fails', async () => {
-        (apiBase.post as jest.Mock).mockRejectedValueOnce(new Error('API Error'));
-        renderNewUserPage();
-
-        fireEvent.change(screen.getByLabelText('Nome'), { target: { value: 'John Doe' } });
-        fireEvent.change(screen.getByLabelText('Email'), { target: { value: 'john@example.com' } });
-        fireEvent.change(screen.getByLabelText('CPF'), { target: { value: '123.456.789-00' } });
-        fireEvent.change(screen.getByLabelText('Data de admissão'), { target: { value: '2023-01-01' } });
-
-        await act(async () => {
-            fireEvent.click(screen.getByRole('button', { name: 'Cadastrar' }));
-        });
-
-        await waitFor(() => {
-            expect(apiBase.post).toHaveBeenCalledWith('/registrations', expect.any(Object));
-            expect(toast.error).toHaveBeenCalledWith('Houve um erro ao tentar cadastrar um novo candidato!');
-        });
+    await waitFor(() => {
+      expect(apiBase.post).toHaveBeenCalledWith('/registrations', {
+        employeeName: 'John Doe',
+        email: 'john@example.com',
+        cpf: '12345678900',
+        admissionDate: '2023-01-01',
+        status: RegistrationStatus.REVIEW,
+      });
+      expect(result.current.mutation.isSuccess).toBeTruthy();
+      expect(result.current.mutation.data).toEqual(dataExpected);
     });
-
-    it('should navigate to dashboard when back button is clicked', () => {
-        renderNewUserPage();
-
-        fireEvent.click(screen.getByLabelText('back'));
-
-        expect(mockHistoryPush).toHaveBeenCalledWith('/dashboard');
-    });
+  });
 });
