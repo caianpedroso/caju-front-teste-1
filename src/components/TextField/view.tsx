@@ -12,6 +12,7 @@ export const TextField = forwardRef<HTMLInputElement, Props>(
 				ref={ref}
 				aria-invalid={!!error}
 				aria-describedby={error ? `${id}-error` : undefined}
+				aria-label={`Campo ${label}`}
 				{...inputProps}
 			/>
 			{error && (

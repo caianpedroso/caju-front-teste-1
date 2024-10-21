@@ -1,8 +1,8 @@
 import * as S from "./styles";
-import RegistrationCard from "../RegistrationCard";
 import {ALL_COLUMNS, Props} from "./models.ts"
 import {Registration, RegistrationStatus} from "~/common/interfaces/registration.ts";
 import {useMemo} from "react";
+import {RegistrationCard} from "~/pages/Dashboard/components/RegistrationCard";
 
 
 function normalizeStatusWord(status: string) {
@@ -22,7 +22,8 @@ function normalizeStatusWord(status: string) {
 
 export const Columns = (props: Props) => {
 
-	const data = useMemo(() => props.registrations?.reduce((acc, registration: Registration) => {
+	console.log(props);
+	const data = useMemo(() => props?.registrations?.reduce((acc, registration: Registration) => {
 		const status = normalizeStatusWord(registration.status)
 		const group = acc[status]
 		group.push(registration)
@@ -36,10 +37,10 @@ export const Columns = (props: Props) => {
 
 	return (
 		<S.Container>
-			{ALL_COLUMNS.map((column) => {
+			{ALL_COLUMNS?.map((column) => {
 				const registrationByStatus = data[column?.status] || []
 				return (
-					<S.Column status={column.status} key={column.title}>
+					<S.Column status={column?.status} key={column?.title}>
 						<>
 							<S.TitleColumn status={column.status}>
 								{column.title}

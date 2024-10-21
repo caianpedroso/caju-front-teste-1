@@ -21,24 +21,8 @@
       "admissionDate": "22/10/2023",
       "email": "jose@caju.com.br",
       "employeeName": "José Leão",
-      "status": "REPROVED",
+      "status": "REVIEW",
       "cpf": "78502270001"
-    },
-    {
-      "id": "d9b0",
-      "status": "REPROVED"
-    },
-    {
-      "id": "04ea",
-      "status": "REPROVED"
-    },
-    {
-      "id": "6d47",
-      "status": "REPROVED"
-    },
-    {
-      "id": "6ac8",
-      "status": "REPROVED"
     },
     {
       "id": "63be",
@@ -47,14 +31,6 @@
       "employeeName": "Caian Egidio",
       "cpf": "439.364.038-13",
       "status": "REPROVED"
-    },
-    {
-      "id": "66f3",
-      "admissionDate": "2020-10-10",
-      "email": "test@test.com",
-      "employeeName": "teste 1",
-      "cpf": "127.853.235-80",
-      "status": "APPROVED"
     },
     {
       "id": "6fff",
@@ -86,7 +62,7 @@
       "email": "sadsa@asdasd.ascpm",
       "employeeName": "daniel tesata",
       "cpf": "43936403813",
-      "status": "REPROVED"
+      "status": "REVIEW"
     },
     {
       "id": "b060",
@@ -113,18 +89,42 @@
       "status": "REPROVED"
     },
     {
-      "id": "1de0",
-      "admissionDate": "1990-11-11",
-      "email": "asdasd@asdsad.com",
-      "employeeName": "asdsa asdasdsa",
-      "cpf": "43936403813",
-      "status": "REVIEW"
-    },
-    {
       "id": "78bb",
       "admissionDate": "1990-11-11",
       "email": "asd@asdasd.com",
       "employeeName": "asd asd",
+      "cpf": "43936403813",
+      "status": "REPROVED"
+    },
+    {
+      "id": "a35c",
+      "admissionDate": "2023-12-12",
+      "email": "caianpedroso@gmail.com",
+      "employeeName": "Caian Egidio",
+      "cpf": "43936403813",
+      "status": "REPROVED"
+    },
+    {
+      "id": "7263",
+      "admissionDate": "1988-12-12",
+      "email": "caianpedroso@gmail.com",
+      "employeeName": "Caian Egidio Teste",
+      "cpf": "43936403813",
+      "status": "REPROVED"
+    },
+    {
+      "id": "7f11",
+      "admissionDate": "1999-12-12",
+      "email": "caian-egidio@hotmail.com",
+      "employeeName": "Caian Egidio",
+      "cpf": "43936403813",
+      "status": "REVIEW"
+    },
+    {
+      "id": "0d9d",
+      "admissionDate": "2222-12-12",
+      "email": "caian-egidio@hotmail.com",
+      "employeeName": "Caian Egidio",
       "cpf": "43936403813",
       "status": "REVIEW"
     }

@@ -1,15 +1,12 @@
-import React from 'react';
-import { render, act } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { screen, fireEvent, waitFor } from '@testing-library/dom';
 import { NewUserPage } from '../view';
 import { useNewUser } from '~/pages';
 
-// Mock the useNewUser hook
 jest.mock('~/pages', () => ({
     useNewUser: jest.fn(),
 }));
 
-// Mock the maskCpf function
 jest.mock('~/common/masks', () => ({
     maskCpf: jest.fn((value) => value),
 }));

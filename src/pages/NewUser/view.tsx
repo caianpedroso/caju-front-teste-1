@@ -5,21 +5,23 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as S from "./styles";
 import { maskCpf } from "~/common/masks";
 
-import { IconButton } from "~/components/Buttons/IconButton";
-import Button from "~/components/Buttons";
-import { TextField } from "~/components";
+import {ButtonDefault, TextField, ModalProvider} from "~/components";
 
 import { useNewUser } from "~/pages";
 import { validation } from "~/pages/NewUser/validation.ts";
 import { ResendFormData } from "~/pages/NewUser/model.ts";
 
 export const NewUserPage = () => {
-	const { onSubmit, goToHome } = useNewUser();
+	const {
+		onSubmit,
+		goToHome,
+		loading
+	} = useNewUser();
 
 	const {
 		register,
 		handleSubmit,
-		formState: { errors, isSubmitting },
+		formState: { errors, isSubmitting, isValid },
 	} = useForm<ResendFormData>({
 		resolver: zodResolver(validation),
 		mode: "onBlur"
@@ -28,9 +30,12 @@ export const NewUserPage = () => {
   return (
     <S.Container>
       <S.Card>
-        <IconButton onClick={() => goToHome()} aria-label="back">
-          <HiOutlineArrowLeft size={24} />
-        </IconButton>
+	      <ButtonDefault
+		      variant='iconPrimary'
+		      aria-label="Voltar para dahboard"
+		      onClick={() => goToHome()}
+		      icon={<HiOutlineArrowLeft size={24} />}
+	      />
 	      <S.Form onSubmit={handleSubmit(onSubmit)}>
 	        <TextField
 		        id="name"
@@ -72,8 +77,16 @@ export const NewUserPage = () => {
 		        min="1900-01-01"
 		        disabled={isSubmitting}
 	        />
-	        <Button type="submit">Cadastrar</Button>
+		      <S.ButtonSubmitContainer>
+		        <ButtonDefault
+			        disabled={!isValid}
+			        loading={loading}
+			        label="Cadastrar"
+			        type="submit"
+		        />
+		      </S.ButtonSubmitContainer>
 	      </S.Form>
+	      <ModalProvider />
       </S.Card>
     </S.Container>
   );

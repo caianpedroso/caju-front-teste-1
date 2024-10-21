@@ -1,8 +1,8 @@
-import {RegistrationStatus} from "~/common/interfaces/registration.ts";
+import { RegistrationStatus } from "~/common/interfaces/registration.ts";
 
 export type Props = {
 	registrations?: any[];
-	status: "loading" | "error" | "success";
+	status: "error" | "loading" | "success" | "idle";
 };
 
 export const ALL_COLUMNS = [

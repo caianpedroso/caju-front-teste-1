@@ -1,15 +1,12 @@
-/// <reference types="jest" />
-
-import React from 'react';
 import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
 import { NewUserPage } from '../view';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { MemoryRouter } from 'react-router-dom';
-import { toast, Toaster } from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 import { apiBase } from '~/api/axios.ts';
 
 // Mocks
-const mockPost = jest.fn();
+// const mockPost = jest.fn();
 const mockHistoryPush = jest.fn();
 
 jest.mock('~/api/axios.ts', () => ({
