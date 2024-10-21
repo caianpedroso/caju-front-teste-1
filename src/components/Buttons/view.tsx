@@ -2,7 +2,6 @@ import React from 'react';
 import { ButtonProps } from "~/components/Buttons/models.ts";
 
 import * as S from "~/components/Buttons/styles";
-import { useButtonViewModel } from "~/components/Buttons/viewModel.ts";
 
 export const ButtonDefault: React.FC<ButtonProps> = ({
 	icon,
@@ -13,7 +12,8 @@ export const ButtonDefault: React.FC<ButtonProps> = ({
 	loading,
 	...rest
 }) => {
-	const { isDisabled } = useButtonViewModel({ disabled, loading });
+
+	const isDisabled = loading || disabled
 
 	return (
 		<S.Button

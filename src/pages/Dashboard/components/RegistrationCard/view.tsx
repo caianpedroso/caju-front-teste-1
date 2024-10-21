@@ -14,12 +14,9 @@ export const RegistrationCard = (props: Props) => {
 		handleReprove,
 		handleApprove,
 		handleReview,
-		// loading,
-		// error,
-
+		loading
 	} = useUpdateRegistration(props.data.id, props.data.employeeName);
 
-	console.log(props);
 	const {
 		deleteRegistration
 	} = useDeleteRegistration(props.data.id, props.data.employeeName);
@@ -45,6 +42,7 @@ export const RegistrationCard = (props: Props) => {
 						label="Reprovar"
 						variant="danger"
 						onClick={handleReprove}
+						loading={loading}
 					/>
 				)}
 
@@ -53,6 +51,7 @@ export const RegistrationCard = (props: Props) => {
 						label="Aprovar"
 						variant="success"
 						onClick={handleApprove}
+						loading={loading}
 					/>
 				)}
 
@@ -61,6 +60,7 @@ export const RegistrationCard = (props: Props) => {
 						label="Revisar novamente"
 						variant="warning"
 						onClick={handleReview}
+						loading={loading}
 					/>
 				)}
 				<HiOutlineTrash onClick={deleteRegistration}/>

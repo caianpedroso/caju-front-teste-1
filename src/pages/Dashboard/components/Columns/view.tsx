@@ -10,7 +10,8 @@ export const Columns = (props: Props) => {
 	return (
 		<S.Container>
 			{ALL_COLUMNS?.map((column) => {
-				const registrationByStatus = data[column?.status] || []
+				console.log({ data })
+				const registrationByStatus = data && data[column?.status] || []
 				return (
 					<S.Column status={column?.status} key={column?.title}>
 						<>

@@ -1,58 +1,52 @@
-import { HiRefresh } from "react-icons/hi";
 import { useHistory } from "react-router-dom";
-// import { IconButton } from "~/components/Buttons/IconButton";
 import { ButtonDefault, TextField } from "~/components";
 import routes from "~/router/routes";
 import * as S from "./styles";
-import { useQueryClient } from "react-query";
 import { useEffect, useState } from "react";
-import {maskCpf} from "~/common/masks";
-import {useQueryRegistrations} from "~/pages/Dashboard/viewModel.ts";
+import { maskCpf } from "~/common/masks";
+import {validateCPF} from "~/common/validations";
 
-export const SearchBar = () => {
-	const { refetch, isLoading } = useQueryRegistrations()
+
+export const SearchBar = (props: any) => {
   const history = useHistory();
 
   const goToNewAdmissionPage = () => {
     history.push(routes.newUser);
   };
 
-	const queryClient = useQueryClient(); // Acesso à store
 	const [cpf, setCpf] = useState('');
-	const [filteredData, setFilteredData] = useState(null);
-	const [debounceTimer, setDebounceTimer] = useState(null); // Controla o debounce
+	const [error, setError] = useState('');
 
 	useEffect(() => {
-		if (debounceTimer) clearTimeout(debounceTimer); // Limpa o timer anterior
 
-		const timer = setTimeout(() => {
-			queryClient.setQueryData(['filteredCpf'], cpf)
-		}, 500); // Aguardar 500ms após a última digitação
+		if(!validateCPF(cpf) && cpf.length === 14) {
+			setError("Digite um CPF válido")
+		} else {
+			setError("")
+		}
 
-		setDebounceTimer(timer);
-
-		// Limpa o timer ao desmontar o componente ou alterar o input
-		return () => clearTimeout(timer);
+		const timeoutId = setTimeout(() => props.onChange(cpf), 500)
+		return () => clearTimeout(timeoutId);
 	}, [cpf]);
-
-console.log('filteredData ', queryClient.getQueryData('filteredCpf'));
-console.log('sss ', isLoading);
 
   return (
 	  <S.Container>
 		  <TextField
 			  placeholder="Digite um CPF válido"
 			  type="text"
-			  value={cpf}
+			  value={maskCpf(cpf)}
 			  maxLength={14}
-			  onChange={(e) => setCpf(maskCpf(e))}
+			  onChange={(e) => setCpf(e.target.value)}
+			  error={error}
+
 		  />
 		  <S.Actions>
 			  <ButtonDefault
 				  variant='iconPrimary'
 				  aria-label="Reload de dados"
-				  onClick={() => refetch()}
-				  icon={<S.RefreshIcon refresh={isLoading}/>}
+				  loading={props.loading}
+				  onClick={() => props.refetch()}
+				  icon={<S.RefreshIcon refresh={props.loading}/>}
 			  />
 			  <ButtonDefault
 				  label='Nova Admissão'

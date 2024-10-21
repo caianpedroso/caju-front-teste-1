@@ -1,7 +1,6 @@
-export const maskCpf = (e: React.ChangeEvent<HTMLInputElement>) => {
-	let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for dígito
+export const maskCpf = (cpf: string) => {
+	let value = cpf.replace(/\D/g, ""); // Remove tudo que não for dígito
 
-	// Aplica a máscara de CPF (999.999.999-99)
 	if (value.length > 3) {
 		value = value.replace(/(\d{3})(\d)/, "$1.$2");
 	}
@@ -12,8 +11,7 @@ export const maskCpf = (e: React.ChangeEvent<HTMLInputElement>) => {
 		value = value.replace(/(\d{3})\.(\d{3})\.(\d{3})(\d)/, "$1.$2.$3-$4");
 	}
 
-	// Atualiza o valor no próprio input
-	e.target.value = value;
+	return value;
 };
 
 
