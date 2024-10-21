@@ -34,4 +34,4 @@
 // export default Button;
 
 
-export * from './view';
+export * from "./view.tsx";
