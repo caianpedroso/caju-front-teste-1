@@ -6,7 +6,7 @@ import vercel from "vite-plugin-vercel"
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), eslintPlugin(, vercel()],
+  plugins: [react(), eslintPlugin(), vercel()],
   server: {
     port: 3001,
   },
