@@ -1,13 +1,10 @@
 import * as S from "./styles";
-import {
-	HiOutlineMail,
-	HiOutlineUser,
-	HiOutlineCalendar,
-	HiOutlineTrash,
-} from "react-icons/hi";
-import { useDeleteRegistration, useUpdateRegistration } from "~/pages/Dashboard/components/RegistrationCard/viewModel.ts";
-import { ButtonDefault, Modal } from "~/components";
-import { Props } from "~/pages/Dashboard/components/RegistrationCard/models.ts";
+import {HiOutlineCalendar, HiOutlineMail, HiOutlineTrash, HiOutlineUser,} from "react-icons/hi";
+import {useDeleteRegistration, useUpdateRegistration} from "~/pages/Dashboard/components/RegistrationCard/viewModel.ts";
+import {ButtonDefault, Modal} from "~/components";
+import {Props} from "~/pages/Dashboard/components/RegistrationCard/models.ts";
+import {Spinner} from "~/components/Buttons/styles.ts";
+import {RegistrationStatus} from "~/common/interfaces/registration.ts";
 
 export const RegistrationCard = (props: Props) => {
 	const {
@@ -18,7 +15,8 @@ export const RegistrationCard = (props: Props) => {
 	} = useUpdateRegistration(props.data.id, props.data.employeeName);
 
 	const {
-		deleteRegistration
+		deleteRegistration,
+		loading: deleteLoading,
 	} = useDeleteRegistration(props.data.id, props.data.employeeName);
 
 	return (
@@ -36,33 +34,39 @@ export const RegistrationCard = (props: Props) => {
 				<span>{props.data.admissionDate}</span>
 			</S.IconAndText>
 			<S.Actions>
+				{
+					loading || deleteLoading ? (<Spinner />) : (
+						<>
+							{
+								props.column === RegistrationStatus.REVIEW && (
+									<>
+										<ButtonDefault
+											label="Reprovar"
+											variant="danger"
+											onClick={handleReprove}
+											disabled={loading}
+										/>
+										<ButtonDefault
+											label="Aprovar"
+											variant="success"
+											onClick={handleApprove}
+											disabled={loading}
+										/>
+									</>
+								)
+							}
 
-				{props.column !== 'REPROVED' && (
-					<ButtonDefault
-						label="Reprovar"
-						variant="danger"
-						onClick={handleReprove}
-						loading={loading}
-					/>
-				)}
-
-				{props.column !== 'APPROVED' && (
-					<ButtonDefault
-						label="Aprovar"
-						variant="success"
-						onClick={handleApprove}
-						loading={loading}
-					/>
-				)}
-
-				{props.column !== 'REVIEW' && (
-					<ButtonDefault
-						label="Revisar novamente"
-						variant="warning"
-						onClick={handleReview}
-						loading={loading}
-					/>
-				)}
+							{props.column !== RegistrationStatus.REVIEW && (
+								<ButtonDefault
+									label="Revisar novamente"
+									variant="warning"
+									onClick={handleReview}
+									disabled={loading}
+								/>
+							)}
+						</>
+					)
+				}
 				<HiOutlineTrash onClick={deleteRegistration}/>
 				<Modal />
 			</S.Actions>

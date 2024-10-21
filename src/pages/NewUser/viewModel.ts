@@ -23,7 +23,7 @@ export function useNewUser()  {
 	};
 
 	const addNewUserMutation = useMutation({
-		mutationFn: addNewUser,
+		mutationFn: addNewUser, 
 		onSuccess: () => {
 			toast.success("Novo candidato cadastrado!", {
 				duration: 5000,
@@ -38,13 +38,14 @@ export function useNewUser()  {
 			toast.error("Houve um erro ao tentar cadastrar um novo candidato!", { id: "new-user-error" });
 		}
 	})
-
+ 
 	const onSubmit = (data: ResendFormData, event: React.BaseSyntheticEvent | undefined) => {
+		event?.preventDefault();
+
 		openModal({
-			title: 'teste',
-			message: 'Tem certeza que deseja revisar este candidato ?',
+			title: data.name,
+			message: 'Tem certeza que deseja cadastrar este candidato?',
 			onConfirm: () => {
-				event?.preventDefault();
 				addNewUserMutation.mutate({
 					admissionDate: data.date,
 					email: data.email,

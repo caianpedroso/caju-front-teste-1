@@ -8,6 +8,7 @@ export type StyledButtonProps = {
 
 export type ButtonProps = {
 	icon?: React.ReactNode;
+	dataTestId?: string;
 	label?: string;
 	type?: "submit" | "reset" | "button" | undefined;
 	onClick?: () => void;

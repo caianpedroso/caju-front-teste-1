@@ -1,7 +1,5 @@
 export function validateCPF(cpf: string) {
-	console.log('1 ', cpf);
 	cpf = cpf.replace(/[^\d]+/g, ''); // Remove caracteres não numéricos
-	console.log('2 ', cpf);
 
 	if (cpf.length !== 11) return false;
 	if (/^(\d)\1{10}$/.test(cpf)) return false;

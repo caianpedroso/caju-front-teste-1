@@ -14,6 +14,7 @@ export const validation = z.object({
 		.min(11, { message: "O CPF deve ter 11 dígitos." }) // 14 caracteres com máscara
 		.refine(validateCPF, { message: "CPF inválido" }),
 	date: z
-		.string()
-		.refine(validateData, { message: "Data inválida. Use o formato DD/MM/YYYY." }),
+		.string({ required_error: "Data obrigatória" })
+		.min(1, { message: "Data obrigatória" })
+		.refine(validateData, { message: "Data inválida. Use o formato DD/MM/YYYY." })
 });

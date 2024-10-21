@@ -78,7 +78,7 @@ export const Spinner = styled.div`
   width: 16px;
   height: 16px;
   border: 2px solid transparent;
-  border-top: 2px solid white;
+  border-top: 2px solid gray;
   border-radius: 50%;
   animation: spin 0.6s linear infinite;
 

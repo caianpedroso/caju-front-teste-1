@@ -4,33 +4,9 @@
       "admissionDate": "22/10/2023",
       "email": "luiz@caju.com.br",
       "employeeName": "Luiz Filho",
-      "status": "APPROVED",
+      "status": "REVIEW",
       "cpf": "56642105087",
       "id": "3"
-    },
-    {
-      "id": "1",
-      "admissionDate": "22/10/2023",
-      "email": "filipe@caju.com.br",
-      "employeeName": "Filipe Marins",
-      "status": "REVIEW",
-      "cpf": "78502270001"
-    },
-    {
-      "id": "2",
-      "admissionDate": "22/10/2023",
-      "email": "jose@caju.com.br",
-      "employeeName": "José Leão",
-      "status": "REVIEW",
-      "cpf": "78502270001"
-    },
-    {
-      "id": "63be",
-      "admissionDate": "2000-10-10",
-      "email": "caianpedroso@gmail.com",
-      "employeeName": "Caian Egidio",
-      "cpf": "439.364.038-13",
-      "status": "REVIEW"
     },
     {
       "id": "6fff",
@@ -38,7 +14,7 @@
       "email": "caianpedroso@gmail.com",
       "employeeName": "Caian egidio",
       "cpf": "457.524.738-37",
-      "status": "REPROVED"
+      "status": "APPROVED"
     },
     {
       "id": "091f",
@@ -49,20 +25,12 @@
       "status": "REPROVED"
     },
     {
-      "id": "bba2",
-      "admissionDate": "1996-07-19",
-      "email": "asdas@asdasd.com",
-      "employeeName": "Daniel Teste",
-      "cpf": "439.364.038-13",
-      "status": "REPROVED"
-    },
-    {
       "id": "cef5",
       "admissionDate": "1996-07-19",
       "email": "sadsa@asdasd.ascpm",
       "employeeName": "daniel tesata",
       "cpf": "43936403813",
-      "status": "REVIEW"
+      "status": "APPROVED"
     },
     {
       "id": "b060",
@@ -118,7 +86,7 @@
       "email": "caian-egidio@hotmail.com",
       "employeeName": "Caian Egidio",
       "cpf": "43936403813",
-      "status": "REVIEW"
+      "status": "REPROVED"
     },
     {
       "id": "0d9d",
@@ -134,6 +102,14 @@
       "email": "caian-egidio@hotmail.com",
       "employeeName": "Caian Egidio",
       "cpf": "43936403813",
+      "status": "REVIEW"
+    },
+    {
+      "id": "39bc",
+      "admissionDate": "1996-07-19",
+      "email": "asdasd@asdasds.com",
+      "employeeName": "asdasds asdasdasd",
+      "cpf": "43477788800",
       "status": "REVIEW"
     }
   ]
