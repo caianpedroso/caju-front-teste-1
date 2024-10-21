@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import { _IconButtonStyled } from "~/components/Buttons/IconButton";
-import Button from "~/components/Buttons";
-
+import {theme} from "~/common/styles";
 
 export const Container = styled.div`
   display: flex;
@@ -9,6 +7,8 @@ export const Container = styled.div`
   justify-content: center;
   flex-direction: column;
   gap: 16px;
+	height: calc(100vh - 64px);
+	background-color: ${theme.colors.white};	
 `;
 
 export const Card = styled.div`
@@ -18,13 +18,17 @@ export const Card = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
- 
-  ${_IconButtonStyled} {
-    margin-bottom: 8px;
-    align-items: flex-start;
-  }
+`;
 
-  ${Button}{
-    align-self: flex-end;
-  }
+export const ButtonSubmitContainer = styled.div`
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 16px;
+`;
+
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
 `;
