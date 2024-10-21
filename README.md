@@ -159,8 +159,22 @@ Esse comando executará os testes que verificam a interação entre diferentes p
 
 Para executar os testes E2E, utilize o seguinte comando:
 
+Inicializar o banco
+
 ```shell
-yarn test:e2e
+yarn init:db
+```
+
+Inicializa o projeto
+
+```shell
+yarn dev
+```
+
+Inicializa o projeto
+
+```shell
+yarn cy:open
 ```
 
 Esse comando irá rodar os testes que simulam o comportamento do usuário na aplicação, garantindo que todas as funcionalidades estejam funcionando como esperado.
