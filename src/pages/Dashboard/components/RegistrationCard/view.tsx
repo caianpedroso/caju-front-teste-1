@@ -7,10 +7,7 @@ import {
 } from "react-icons/hi";
 import { useDeleteRegistration, useUpdateRegistration } from "~/pages/Dashboard/components/RegistrationCard/viewModel.ts";
 import { ButtonDefault, ModalProvider} from "~/components";
-
-type Props = {
-	data: any;
-};
+import { Props } from "~/pages/Dashboard/components/RegistrationCard/models.ts";
 
 export const RegistrationCard = (props: Props) => {
 	const {
@@ -21,6 +18,8 @@ export const RegistrationCard = (props: Props) => {
 		// error,
 
 	} = useUpdateRegistration(props.data.id, props.data.employeeName);
+
+	console.log(props);
 	const {
 		deleteRegistration
 	} = useDeleteRegistration(props.data.id, props.data.employeeName);
@@ -40,21 +39,30 @@ export const RegistrationCard = (props: Props) => {
 				<span>{props.data.admissionDate}</span>
 			</S.IconAndText>
 			<S.Actions>
-				<ButtonDefault
-					label="Reprovar"
-					variant="danger"
-					onClick={handleReprove}
-				/>
-				<ButtonDefault
-					label="Aprovar"
-					variant="success"
-					onClick={handleApprove}
-				/>
-				<ButtonDefault
-					label="Revisar novamente"
-					variant="warning"
-					onClick={handleReview}
-				/>
+
+				{props.column !== 'REPROVED' && (
+					<ButtonDefault
+						label="Reprovar"
+						variant="danger"
+						onClick={handleReprove}
+					/>
+				)}
+
+				{props.column !== 'APPROVED' && (
+					<ButtonDefault
+						label="Aprovar"
+						variant="success"
+						onClick={handleApprove}
+					/>
+				)}
+
+				{props.column !== 'REVIEW' && (
+					<ButtonDefault
+						label="Revisar novamente"
+						variant="warning"
+						onClick={handleReview}
+					/>
+				)}
 				<HiOutlineTrash onClick={deleteRegistration}/>
 				<ModalProvider />
 			</S.Actions>

@@ -1,39 +1,11 @@
 import * as S from "./styles";
-import {ALL_COLUMNS, Props} from "./models.ts"
-import {Registration, RegistrationStatus} from "~/common/interfaces/registration.ts";
-import {useMemo} from "react";
-import {RegistrationCard} from "~/pages/Dashboard/components/RegistrationCard";
-
-
-function normalizeStatusWord(status: string) {
-	switch (status.toUpperCase()) {
-		case "APROVED":
-		case "APPROVED":
-			return RegistrationStatus.APPROVED
-
-		case "REPROVED":
-			return RegistrationStatus.REPROVED
-
-		default:
-			return RegistrationStatus.REVIEW
-
-	}
-}
+import { ALL_COLUMNS, Props } from "./models.ts"
+import { Registration } from "~/common/interfaces/registration.ts";
+import { RegistrationCard } from "~/pages/Dashboard/components/RegistrationCard";
+import { useColumns } from "~/pages/Dashboard/components/Columns/viewModel.ts";
 
 export const Columns = (props: Props) => {
-
-	console.log(props);
-	const data = useMemo(() => props?.registrations?.reduce((acc, registration: Registration) => {
-		const status = normalizeStatusWord(registration.status)
-		const group = acc[status]
-		group.push(registration)
-		acc[status] = group
-		return acc
-	}, {
-		APPROVED: [],
-		REPROVED: [],
-		REVIEW: []
-	}), [props])
+	const { data } = useColumns(props);
 
 	return (
 		<S.Container>
@@ -51,6 +23,7 @@ export const Columns = (props: Props) => {
 										<RegistrationCard
 											data={registration}
 											key={registration.id}
+											column={column.status}
 										/>
 									);
 								})}
