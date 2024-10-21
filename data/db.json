@@ -9,20 +9,12 @@
       "id": "3"
     },
     {
-      "id": "6fff",
-      "admissionDate": "2020-10-10",
-      "email": "caianpedroso@gmail.com",
-      "employeeName": "Caian egidio",
-      "cpf": "457.524.738-37",
-      "status": "APPROVED"
-    },
-    {
       "id": "091f",
       "admissionDate": "2222-02-12",
       "email": "caianpedroso@gmail.com",
       "employeeName": "Caian Egidio",
       "cpf": "439.364.038-13",
-      "status": "REPROVED"
+      "status": "APPROVED"
     },
     {
       "id": "cef5",
@@ -34,14 +26,6 @@
     },
     {
       "id": "b060",
-      "admissionDate": "1996-07-19",
-      "email": "sadsa@asdasd.ascpm",
-      "employeeName": "daniel tesata",
-      "cpf": "43936403813",
-      "status": "REPROVED"
-    },
-    {
-      "id": "164e",
       "admissionDate": "1996-07-19",
       "email": "sadsa@asdasd.ascpm",
       "employeeName": "daniel tesata",
@@ -94,7 +78,7 @@
       "email": "caian-egidio@hotmail.com",
       "employeeName": "Caian Egidio",
       "cpf": "43936403813",
-      "status": "REVIEW"
+      "status": "REPROVED"
     },
     {
       "id": "db66",
@@ -102,7 +86,7 @@
       "email": "caian-egidio@hotmail.com",
       "employeeName": "Caian Egidio",
       "cpf": "43936403813",
-      "status": "REVIEW"
+      "status": "APPROVED"
     },
     {
       "id": "39bc",

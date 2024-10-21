@@ -9,7 +9,7 @@
     "build": "tsc && vite build",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
-    "test:cy": "start-server-and-test db:init http://localhost:3000 dev http://localhost:3001 cy:run",
+    "test:cy": "npm run init:db http://localhost:3000 && dev cy:run",
     "test:dev": "jest --watch --verbose --no-cache",
     "test:unit": "jest --testMatch='**/*.unit.test.{ts,tsx}'",
     "test:integration": "jest --testMatch='**/*.integration.test.{ts,tsx}'",

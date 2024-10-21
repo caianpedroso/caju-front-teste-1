@@ -1,15 +1,9 @@
-import { screen, fireEvent, waitFor, act, renderHook } from '@testing-library/react';
-import { NewUserPage } from '../view';
+import { waitFor, act, renderHook } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { MemoryRouter } from 'react-router-dom';
-import { toast } from 'react-hot-toast';
-import { render } from '~/test-utils';
 import { apiBase } from '~/api/axios.ts';
 import { useNewUser } from '../viewModel';
 import { RegistrationStatus } from '~/common/interfaces/registration';
 
-// Mocks
-// const mockPost = jest.fn();
 const mockHistoryPush = jest.fn();
 
 jest.mock('~/api/axios.ts', () => ({
