@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import {useGlobalModal} from "~/components";
 
 export const updateRegistration = async (payload: { id: string, status: RegistrationStatus}) => {
-	return apiBase.patch(`/registrations/${payload.id}`, payload)
+	return apiBase.put(`/registrations/${payload.id}`, payload)
 }
 export const deleteRegistration = async (id: string) => {
 	return apiBase.delete(`/registrations/${id}`)
