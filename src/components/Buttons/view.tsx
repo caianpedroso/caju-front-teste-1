@@ -25,7 +25,7 @@ export const ButtonDefault: React.FC<ButtonProps> = ({
       {...rest}
     >
       {loading ? (
-        <S.Spinner />
+        <S.Spinner data-testid="spinner" />
       ) : (
         <>
           {icon && <S.IconWrapper>{icon}</S.IconWrapper>}
