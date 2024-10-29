@@ -1,7 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { Columns } from '../view';
-import { useColumns } from '../viewModel';
+import { Columns, useColumns } from '~/pages/Dashboard/components/Columns';
+import React from "react";
+import { ThemeProvider } from "styled-components";
+import { theme } from "~/common/styles";
 
 jest.mock('../viewModel', () => ({
 	useColumns: jest.fn(),
@@ -10,6 +12,9 @@ jest.mock('../viewModel', () => ({
 jest.mock('~/pages/Dashboard/components/RegistrationCard', () => ({
 	RegistrationCard: jest.fn(() => <div data-testid="registration-card" />),
 }));
+
+const renderWithTheme = (ui: React.ReactNode) =>
+	render(<ThemeProvider theme={theme}>{ui}</ThemeProvider>);
 
 describe('Columns Component', () => {
 	const mockUseColumns = useColumns as jest.Mock;
@@ -25,7 +30,7 @@ describe('Columns Component', () => {
 	});
 
 	it('should render all columns with their titles', () => {
-		render(<Columns registrations={[]} loading={false} status="success" />);
+		renderWithTheme(<Columns registrations={[]} loading={false} status="success" />);
 
 		expect(screen.getByText('Pronto para revisar')).toBeInTheDocument();
 		expect(screen.getByText('Aprovado')).toBeInTheDocument();
@@ -33,7 +38,7 @@ describe('Columns Component', () => {
 	});
 
 	it('should render the correct number of registration cards', () => {
-		render(<Columns registrations={[]} loading={false} status="success" />);
+		renderWithTheme(<Columns registrations={[]} loading={false} status="success" />);
 
 		const cards = screen.getAllByTestId('registration-card');
 		expect(cards).toHaveLength(3);
@@ -42,7 +47,7 @@ describe('Columns Component', () => {
 	it('should not render registration cards when there are no registrations', () => {
 		mockUseColumns.mockReturnValue({ data: {} });
 
-		render(<Columns registrations={[]} loading={false} status="success" />);
+		renderWithTheme(<Columns registrations={[]} loading={false} status="success" />);
 
 		const cards = screen.queryAllByTestId('registration-card');
 		expect(cards).toHaveLength(0);
@@ -51,7 +56,7 @@ describe('Columns Component', () => {
 	it('should handle empty data gracefully', () => {
 		mockUseColumns.mockReturnValue({ data: null });
 
-		render(<Columns registrations={[]} loading={false} status="idle" />);
+		renderWithTheme(<Columns registrations={[]} loading={false} status="idle" />);
 
 		expect(screen.queryAllByTestId('registration-card')).toHaveLength(0);
 	});
