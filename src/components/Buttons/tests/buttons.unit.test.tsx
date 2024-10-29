@@ -1,9 +1,8 @@
-// ButtonDefault.test.tsx
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { ThemeProvider } from 'styled-components';
-import { ButtonDefault } from '~/components/Buttons/view';
+import { ButtonDefault } from '~/components';
 import { theme } from '~/common/styles/theme';
 
 const renderWithTheme = (ui: React.ReactNode) =>
