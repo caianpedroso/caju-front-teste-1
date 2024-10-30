@@ -7,7 +7,7 @@ import { Spinner } from '~/components/Buttons/styles.ts';
 import { RegistrationStatus } from '~/common/interfaces/registration.ts';
 
 export const RegistrationCard = (props: Props) => {
-  const { handleReprove, handleApprove, handleReview, loading } = useUpdateRegistration(props.data.id, props.data.employeeName);
+  const { handleReprove, handleApprove, handleReview, loading } = useUpdateRegistration(props.data);
 
   const { deleteRegistration, loading: deleteLoading } = useDeleteRegistration(props.data.id, props.data.employeeName);
 
@@ -27,7 +27,7 @@ export const RegistrationCard = (props: Props) => {
       </S.IconAndText>
       <S.Actions>
         {loading || deleteLoading ? (
-          <Spinner />
+          <Spinner data-testid="spinner" />
         ) : (
           <>
             {props.column === RegistrationStatus.REVIEW && (
@@ -42,7 +42,7 @@ export const RegistrationCard = (props: Props) => {
             )}
           </>
         )}
-        <HiOutlineTrash onClick={deleteRegistration} />
+        <HiOutlineTrash data-testid="delete-icon"  onClick={deleteRegistration} />
         <Modal />
       </S.Actions>
     </S.Card>
