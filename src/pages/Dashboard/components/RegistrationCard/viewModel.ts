@@ -1,18 +1,19 @@
 import { apiBase } from "~/api/axios.ts";
-import { RegistrationStatus} from "~/common/interfaces/registration.ts";
+import {Registration, RegistrationStatus} from "~/common/interfaces/registration.ts";
 import { useMutation } from "react-query";
 import { queryClient } from "~/api/query-client.ts";
 import toast from "react-hot-toast";
-import {useGlobalModal} from "~/components";
+import { useGlobalModal } from "~/components";
 
-export const updateRegistration = async (payload: { id: string, status: RegistrationStatus}) => {
+export const updateRegistration = async (payload: Registration) => {
 	return apiBase.put(`/registrations/${payload.id}`, payload)
 }
+
 export const deleteRegistration = async (id: string) => {
 	return apiBase.delete(`/registrations/${id}`)
 }
 
-export function useUpdateRegistration(id: string, name: string)  {
+export function useUpdateRegistration(data: Registration)  {
 	const { openModal } = useGlobalModal();
 
 	const updateRegistrationMutation = useMutation({
@@ -29,13 +30,13 @@ export function useUpdateRegistration(id: string, name: string)  {
 	})
 
 	const handleStatusRegistration = ({ status }: { status: RegistrationStatus }) => updateRegistrationMutation.mutate({
-		id,
+		...data,
 		status
 	});
 
 	const handleApprove = () => {
 		openModal({
-			title: name,
+			title: data.employeeName,
 			message: 'Tem certeza que deseja aprovar este candidato ?',
 			onConfirm: () => handleStatusRegistration({
 				status: RegistrationStatus.APPROVED
@@ -45,7 +46,7 @@ export function useUpdateRegistration(id: string, name: string)  {
 
 	const handleReprove = () => {
 		openModal({
-			title: name,
+			title: data.employeeName,
 			message: 'Tem certeza que deseja reprovar este candidato ?',
 			onConfirm: () => handleStatusRegistration({
 				status: RegistrationStatus.REPROVED
@@ -55,7 +56,7 @@ export function useUpdateRegistration(id: string, name: string)  {
 
 	const handleReview = () => {
 		openModal({
-			title: name,
+			title: data.employeeName,
 			message: 'Tem certeza que deseja revisar este candidato ?',
 			onConfirm: () => handleStatusRegistration({
 				status: RegistrationStatus.REVIEW

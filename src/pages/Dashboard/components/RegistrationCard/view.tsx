@@ -7,7 +7,7 @@ import { Spinner } from '~/components/Buttons/styles.ts';
 import { RegistrationStatus } from '~/common/interfaces/registration.ts';
 
 export const RegistrationCard = (props: Props) => {
-  const { handleReprove, handleApprove, handleReview, loading } = useUpdateRegistration(props.data.id, props.data.employeeName);
+  const { handleReprove, handleApprove, handleReview, loading } = useUpdateRegistration(props.data);
 
   const { deleteRegistration, loading: deleteLoading } = useDeleteRegistration(props.data.id, props.data.employeeName);
 
