@@ -1,0 +1,95 @@
+// import { render, screen, fireEvent } from '@testing-library/react';
+// import '@testing-library/jest-dom';
+// import { DashboardPage } from '~/pages';
+// import { useRegistration } from '~/pages/Dashboard/viewModel';
+//
+// jest.mock('~/pages/Dashboard/viewModel', () => ({
+// 	useRegistration: jest.fn(),
+// }));
+//
+// jest.mock('../components/Searchbar', () => ({
+// 	SearchBar: jest.fn(({ onChange, refetch, loading }) => (
+// 		<div>
+// 			<input
+// 				data-testid="search-input"
+// 				onChange={(e) => onChange(e.target.value)}
+// 			/>
+// 			<button data-testid="refetch-button" onClick={refetch}>
+// 				Refetch
+// 			</button>
+// 			{loading && <span data-testid="loading-indicator">Loading...</span>}
+// 		</div>
+// 	)),
+// }));
+//
+// jest.mock('../components/Columns', () => ({
+// 	Columns: jest.fn(({ registrations, status, loading }) => (
+// 		<div data-testid="columns">
+// 			{registrations.map((reg) => (
+// 				<div key={reg.id} data-testid="registration">
+// 					{reg.cpf}
+// 				</div>
+// 			))}
+// 		</div>
+// 	)),
+// }));
+//
+// describe('DashboardPage Component', () => {
+// 	const mockUseRegistration = useRegistration as jest.Mock;
+//
+// 	beforeEach(() => {
+// 		mockUseRegistration.mockReturnValue({
+// 			registrations: [{ id: 1, cpf: '12345678901' }],
+// 			status: 'success',
+// 			refetch: jest.fn(),
+// 			search: jest.fn(),
+// 			loading: false,
+// 		});
+// 	});
+//
+// 	it('should render SearchBar and Columns components', () => {
+// 		render(<DashboardPage />);
+//
+// 		expect(screen.getByTestId('search-input')).toBeInTheDocument();
+// 		expect(screen.getByTestId('columns')).toBeInTheDocument();
+// 	});
+//
+// 	it('should call refetch when refetch button is clicked', () => {
+// 		const { refetch } = mockUseRegistration.mock.results[0].value;
+// 		render(<DashboardPage />);
+//
+// 		fireEvent.click(screen.getByTestId('refetch-button'));
+// 		expect(refetch).toHaveBeenCalled();
+// 	});
+//
+// 	it('should call search when typing in the search input', () => {
+// 		const { search } = mockUseRegistration.mock.results[0].value;
+// 		render(<DashboardPage />);
+//
+// 		fireEvent.change(screen.getByTestId('search-input'), {
+// 			target: { value: '12345678901' },
+// 		});
+// 		expect(search).toHaveBeenCalledWith('12345678901');
+// 	});
+//
+// 	it('should display loading indicator when loading is true', () => {
+// 		mockUseRegistration.mockReturnValueOnce({
+// 			registrations: [],
+// 			status: 'loading',
+// 			refetch: jest.fn(),
+// 			search: jest.fn(),
+// 			loading: true,
+// 		});
+//
+// 		render(<DashboardPage />);
+// 		expect(screen.getByTestId('loading-indicator')).toBeInTheDocument();
+// 	});
+//
+// 	it('should render registrations in Columns', () => {
+// 		render(<DashboardPage />);
+//
+// 		const registrations = screen.getAllByTestId('registration');
+// 		expect(registrations).toHaveLength(1);
+// 		expect(registrations[0]).toHaveTextContent('12345678901');
+// 	});
+// });

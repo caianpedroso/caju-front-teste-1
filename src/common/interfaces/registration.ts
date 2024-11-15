@@ -4,7 +4,7 @@ export enum RegistrationStatus {
 		REPROVED = "REPROVED",
 }
 
-export interface Registration {
+export type Registration = {
 	admissionDate: string;
 	email: string;
 	employeeName: string;

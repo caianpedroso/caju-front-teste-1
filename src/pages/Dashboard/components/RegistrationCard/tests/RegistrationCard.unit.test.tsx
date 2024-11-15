@@ -1,10 +1,9 @@
-// RegistrationCard.test.tsx
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { ThemeProvider } from 'styled-components';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { RegistrationCard, useUpdateRegistration, useDeleteRegistration} from '~/pages/Dashboard/components/RegistrationCard';
+import { RegistrationCard, useUpdateRegistration, useDeleteRegistration } from '~/pages/Dashboard/components/RegistrationCard';
 import { RegistrationStatus } from '~/common/interfaces/registration';
 import { theme } from '~/common/styles';
 

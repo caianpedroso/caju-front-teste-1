@@ -1,12 +1,20 @@
 {
   "registrations": [
     {
-      "admissionDate": "22/10/2023",
-      "email": "luiz@caju.com.br",
-      "employeeName": "Luiz Filho",
-      "status": "REVIEW",
-      "cpf": "56642105087",
-      "id": "1"
+      "id": "9163",
+      "admissionDate": "2020-01-01",
+      "email": "caian-egidio@hotmail.com",
+      "employeeName": "Caian Egidio Pedroso",
+      "cpf": "43936403813",
+      "status": "APPROVED"
+    },
+    {
+      "id": "86b6",
+      "admissionDate": "2001-01-01",
+      "email": "test@teste.com",
+      "employeeName": "Pedro Alcantara",
+      "cpf": "45752473837",
+      "status": "REPROVED"
     }
   ]
 }
